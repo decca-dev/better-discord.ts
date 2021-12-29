@@ -1,0 +1,1 @@
+{"version":3,"file":"Command.js","sourceRoot":"","sources":["../../src/Structures/Command.ts"],"names":[],"mappings":"AAIA,MAAM,OAAO,OAAO;IAKlB,YAAY,OAAyB;QACnC,IAAI,CAAC,IAAI,GAAG,OAAO,CAAC,IAAI,CAAC;QACzB,IAAI,CAAC,QAAQ,GAAG,OAAO,CAAC,QAAQ,IAAI,CAAC,CAAC;QACtC,IAAI,CAAC,GAAG,GAAG,OAAO,CAAC,GAAG,CAAC;IACzB,CAAC;CACF"}
