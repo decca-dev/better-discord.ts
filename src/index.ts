@@ -11,9 +11,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const registerer = new CommandRegisterer({
-  clientID: "832971552114737182",
+  clientID: process.env.CLIENT_ID,
   commandsPath: join(__dirname, "Commands"),
 });
-registerer.register();
-const client = new TSClient({ intents: [Intents.FLAGS.GUILDS] });
+await registerer.register();
+export const client = new TSClient({ intents: [Intents.FLAGS.GUILDS] });
 client.init();

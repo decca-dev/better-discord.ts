@@ -4,7 +4,7 @@ import { Logger } from "../Utils/Logger.js";
 
 const logger = new Logger("ready");
 
-export const event = new Event({
+export default new Event({
   name: "ready",
   run: (client: TSClient) => {
     logger.info(`Logged in as ${client.user?.username}`);

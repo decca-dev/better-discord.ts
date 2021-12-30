@@ -15,5 +15,5 @@ export interface CommandRegistererInterface {
 
 export interface EventInterface {
   name: keyof ClientEvents;
-  run: (client: TSClient, ...args: any[]) => void;
+  run: (...args: any[]) => void;
 }

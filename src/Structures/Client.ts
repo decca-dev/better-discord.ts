@@ -12,8 +12,10 @@ const logger = new Logger("client");
 
 export class TSClient extends Client {
   public commands: Collection<string, Command> = new Collection();
-  public events: Collection<string, Event> = new Collection();
-  public cooldown: Collection<string, number> = new Collection();
+
+  public async importFile(filePath: string) {
+    return (await import(filePath))?.default;
+  }
 
   public init(): void {
     const commandsPath = join(__dirname, "..", "Commands");
@@ -22,7 +24,7 @@ export class TSClient extends Client {
         (file) => file.endsWith(".js")
       );
       for (const file of commandFiles) {
-        const { command } = await import(
+        const command: Command = await this.importFile(
           `file://${commandsPath}/${dir}/${file}`
         );
         this.commands.set(command.data?.name, command);
@@ -33,10 +35,11 @@ export class TSClient extends Client {
     const eventPath = join(__dirname, "..", "Events");
     readdirSync(eventPath).forEach(async (file) => {
       if (file.endsWith(".js")) {
-        const { event } = await import(`file://${eventPath}/${file}`);
-        this.events.set(event.name, event);
+        const event: Event = await this.importFile(
+          `file://${eventPath}/${file}`
+        );
         logger.info(`EVENT - ${event.name}`);
-        this.on(event.name, (...args: any[]) => event.run(this, ...args));
+        this.on(event.name, (...args) => event.run(...args));
       }
     });
 
