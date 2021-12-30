@@ -28,6 +28,9 @@ export class CommandRegisterer {
 
   public async register(guildID?: string): Promise<void> {
     const commands: RESTPostAPIApplicationCommandsJSONBody[] = [];
+    const rest = new REST({ version: "9" }).setToken(
+      process.env.TOKEN as string
+    );
     await readdirSync(this.commandsPath).forEach(async (dir) => {
       const commandFiles = readdirSync(`${this.commandsPath}/${dir}`).filter(
         (file) => file.endsWith(".js")
@@ -39,11 +42,6 @@ export class CommandRegisterer {
         commands.push(command.data?.toJSON());
         logger.info(`Registering ${command.data?.name}`);
       }
-      console.log(commands);
-
-      const rest = new REST({ version: "9" }).setToken(
-        process.env.TOKEN as string
-      );
 
       if (!guildID) {
         rest
