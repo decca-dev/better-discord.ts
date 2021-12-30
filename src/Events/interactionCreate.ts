@@ -13,6 +13,12 @@ export default new Event({
 
     if (!command) return;
 
+    if (command.ownerOnly && interaction.user.id !== process.env.OWNER_ID)
+      return await interaction.reply({
+        content: "This command can only be triggered by the bot owner!",
+        ephemeral: true,
+      });
+
     try {
       await command.run(interaction);
     } catch (error: any) {

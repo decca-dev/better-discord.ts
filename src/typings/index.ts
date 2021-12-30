@@ -1,10 +1,10 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { CommandInteraction, ClientEvents } from "discord.js";
-import { TSClient } from "../Structures/Client";
+import { CommandInteraction, ClientEvents, PermissionString } from "discord.js";
 
 export interface CommandInterface {
   data: SlashCommandBuilder;
-  cooldown?: number;
+  permissions?: PermissionString[];
+  ownerOnly: boolean;
   run: (interaction: CommandInteraction) => void;
 }
 

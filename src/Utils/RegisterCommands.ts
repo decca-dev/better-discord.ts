@@ -39,6 +39,7 @@ export class CommandRegisterer {
         commands.push(command.data?.toJSON());
         logger.info(`Registering ${command.data?.name}`);
       }
+      console.log(commands);
 
       const rest = new REST({ version: "9" }).setToken(
         process.env.TOKEN as string
