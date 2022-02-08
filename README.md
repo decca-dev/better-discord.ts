@@ -1,3 +1,3 @@
-# better-discord.ts
+# discord-ts-slashcommands-template
 
-Very cool Typescript bot template with slash commands implementation
+Typescript bot template with slash commands implementation
